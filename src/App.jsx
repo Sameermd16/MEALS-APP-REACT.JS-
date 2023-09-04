@@ -1,14 +1,16 @@
-import { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { AppProvider } from './AppContext'
 
 import './App.css'
+import Meals from './components/Meals'
 
 function App() {
 
 
   return (
-    <>
-      dude wheres my car
-    </>
+    <AppProvider>
+      <Meals />
+    </AppProvider>
   )
 }
 
