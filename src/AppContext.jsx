@@ -10,10 +10,12 @@ export function AppProvider({ children }) {
     
     const [meals, setMeals] = useState([])
     console.log(meals)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         console.log('appcontext -> useeffect ran')
         async function fetchData(url) {
+            setLoading(true)
             try {
                 const {data} = await axios.get(url)  
                 // console.log(data.meals)
@@ -27,12 +29,13 @@ export function AppProvider({ children }) {
             } catch(error) {
                 console.log(error.response)
             }
+            setLoading(false)
         }
         fetchData(allMealsURL)
     }, [])
 
     return (
-        <AppContext.Provider value={{ meals }}> 
+        <AppContext.Provider value={{ meals, loading, setLoading }}> 
             { children }
         </AppContext.Provider>
     )

@@ -1,13 +1,21 @@
+import { useState } from "react"
 import { useGlobalContext } from "../AppContext"
-import { BsHandThumbsUp } from 'react-icons/bs'
+import { BsHandThumbsUp, BsFillHandThumbsUpFill } from 'react-icons/bs'
 
 export default function Meals() {
 
-    const { meals }  = useGlobalContext()
+    const [isFavorite, setIsFavorite] = useState(false)
+    
+
+    const { meals, loading }  = useGlobalContext()
     console.log(meals)
 
+    if(loading) {
+        return <h1>Loading...</h1>
+    }
+
     return (
-        <section className='container-fluid row m-5 gap-4'>
+        <section className='container m-auto row m-5 gap-4'>
             {
                 meals.map((object) => {
                     const { idMeal: id, strMeal: title, strMealThumb: image } = object
