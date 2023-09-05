@@ -33,14 +33,13 @@ export function AppProvider({ children }) {
         setLoading(false)
     }
 
-    // useEffect(() => {
-    //     console.log('appcontext -> useeffect ran')
-    //     fetchData(allMealsURL)
-    // }, [])
-
-
+    useEffect(() => {
+        console.log('appcontext -> useeffect ran')
+        fetchData(allMealsURL)
+    }, [])
 
     useEffect(() => {
+        if(!searchTerm) return 
         fetchData(`${allMealsURL}${searchTerm}`)
     }, [searchTerm])
 

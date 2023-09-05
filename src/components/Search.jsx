@@ -18,11 +18,16 @@ export default function Search() {
         }
     }
 
+    function handleRandomMeal() {
+        setSearchTerm('')
+        setSearchInput('')
+        fetchRandomMeals()
+    }
 
 
     return (
-        <div className='m-5'>
-            <form onSubmit={handleSubmit}>
+        <div className='m-5 d-flex justify-content-center'>
+            <form onSubmit={handleSubmit} className='d-flex gap-2'>
                 <input 
                     type='text'
                     placeholder='search food'
@@ -31,7 +36,7 @@ export default function Search() {
                 />
                 <button type="submit" className='btn btn-outline-primary btn-sm'>search</button>
                 <button type="button" className='btn btn btn-outline-primary btn-sm'
-                    onClick={fetchRandomMeals}
+                    onClick={handleRandomMeal}
                 >surprise me!</button>
             </form>
         </div>

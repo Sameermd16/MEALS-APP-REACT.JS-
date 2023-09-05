@@ -14,13 +14,13 @@ export default function Meals() {
     }
 
     return (
-        <section className='container m-auto row m-5 gap-4'>
+        <section className='container m-auto row m-5 gap-4 meals_container'>
             {
-                meals ? (
+                meals.length > 0 ? (
                     meals.map((object) => {
                         const { idMeal: id, strMeal: title, strMealThumb: image } = object
                         return (
-                            <div key={id} className='col shadow' style={{maxWidth: '300px'}}>
+                            <div key={id} className='meal_div'>
                                 <img src={image} alt={title} width='100%' />
                                 <div className='mt-3 d-flex align-items-center justify-content-between'>
                                     <h5> {title} </h5>
