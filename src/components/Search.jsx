@@ -7,7 +7,7 @@ export default function Search() {
     const { setSearchTerm, fetchRandomMeals } = useGlobalContext()
 
     const [searchInput, setSearchInput] = useState('')
-    console.log(searchInput)
+    // console.log(searchInput)
 
 
     function handleSubmit(e) {

@@ -12,6 +12,20 @@ export function AppProvider({ children }) {
     // console.log(meals)
     const [loading, setLoading] = useState(false)
     const [searchTerm, setSearchTerm] = useState('')
+    const [showModal, setShowModal] = useState(false)
+    const [selectedMeal, setSelectedMeal] = useState(meals) 
+    console.log(selectedMeal)
+
+    const props = { 
+        meals, 
+        loading, 
+        setSearchTerm, 
+        fetchRandomMeals, 
+        showModal, 
+        selectMeal, 
+        setShowModal, 
+        selectedMeal 
+    }
 
     async function fetchData(url) {
         setLoading(true)
@@ -34,7 +48,7 @@ export function AppProvider({ children }) {
     }
 
     useEffect(() => {
-        console.log('appcontext -> useeffect ran')
+        // console.log('appcontext -> useeffect ran')
         fetchData(allMealsURL)
     }, [])
 
@@ -47,8 +61,19 @@ export function AppProvider({ children }) {
         fetchData(randomMealsURL)
     }
 
+    function selectMeal(id) {
+        let meal
+        meal = meals.find((item) => {
+            return item.idMeal === id 
+        })
+        setSelectedMeal(meal)
+        setShowModal(true)
+        console.log(meal)
+        // console.log(selectedMeal)
+    }
+
     return (
-        <AppContext.Provider value={{ meals, loading, setSearchTerm, fetchRandomMeals }}> 
+        <AppContext.Provider value={props}> 
             { children }
         </AppContext.Provider>
     )
@@ -56,4 +81,4 @@ export function AppProvider({ children }) {
 
 export function useGlobalContext() {
     return useContext(AppContext)
-}
+} 

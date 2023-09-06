@@ -3,6 +3,7 @@ import { AppProvider } from './AppContext'
 import './App.css'
 import Meals from './components/Meals'
 import Search from './components/Search'
+import Modal from './components/Modal'
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
     <AppProvider>
       <Search />
       <Meals />
+      <Modal />
     </AppProvider>
   )
 }
