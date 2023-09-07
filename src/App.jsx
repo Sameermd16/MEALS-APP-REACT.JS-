@@ -4,6 +4,7 @@ import './App.css'
 import Meals from './components/Meals'
 import Search from './components/Search'
 import Modal from './components/Modal'
+import Favorites from './components/Favorites'
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
   return (
     <AppProvider>
       <Search />
+      <Favorites />
       <Meals />
       <Modal />
     </AppProvider>

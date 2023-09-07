@@ -6,7 +6,7 @@ export default function Meals() {
 
     // const [isFavorite, setIsFavorite] = useState(false)
     
-    const { meals, loading, selectMeal }  = useGlobalContext()
+    const { meals, loading, selectMeal, addToFavorites }  = useGlobalContext()
     // console.log(meals)
 
     if(loading) {
@@ -24,7 +24,7 @@ export default function Meals() {
                                 <img src={image} alt={title} width='100%' onClick={() => selectMeal(id)} />
                                 <div className='mt-3 d-flex align-items-center justify-content-between'>
                                     <h5> {title} </h5>
-                                    <BsHandThumbsUp />
+                                    <BsHandThumbsUp onClick={() => addToFavorites(id)} />
                                 </div>
                             </div>
                         )
