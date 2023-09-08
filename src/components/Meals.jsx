@@ -21,7 +21,7 @@ export default function Meals() {
                         const { idMeal: id, strMeal: title, strMealThumb: image } = object
                         return (
                             <div key={id} className='meal_div'>
-                                <img src={image} alt={title} width='100%' onClick={() => selectMeal(id)} />
+                                <img src={image} alt={title} width='100%' onClick={() => selectMeal(id, true)} />
                                 <div className='mt-3 d-flex align-items-center justify-content-between'>
                                     <h5> {title} </h5>
                                     <BsHandThumbsUp onClick={() => addToFavorites(id)} />

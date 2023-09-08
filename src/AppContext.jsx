@@ -15,8 +15,18 @@ export function AppProvider({ children }) {
     const [showModal, setShowModal] = useState(false)
     const [selectedMeal, setSelectedMeal] = useState(meals) 
     // console.log(selectedMeal)
-    const [favorites, setFavorites] = useState([]) 
+    const [favorites, setFavorites] = useState(gettingItemsFromLocalStorage()) 
     console.log(favorites)
+
+    function gettingItemsFromLocalStorage() {
+        const localStorageData = JSON.parse(localStorage.getItem('favorites'))
+        if(localStorageData) {
+            return localStorageData
+        } else {
+            return []
+        }
+    }
+
 
     const props = { 
         meals, 
@@ -66,14 +76,20 @@ export function AppProvider({ children }) {
         fetchData(randomMealsURL)
     }
 
-    function selectMeal(id) {
+    function selectMeal(id, favoriteMeal) {
         let meal
-        meal = meals.find((item) => {
-            return item.idMeal === id 
-        })
+        if(favoriteMeal) {
+            meal = favorites.find((item) => {
+                return item.idMeal === id 
+            })
+        } else {
+            meal = meals.find((item) => {
+                return item.idMeal === id 
+            })
+        }
         setSelectedMeal(meal)
         setShowModal(true)
-        console.log(meal)
+        // console.log(meal)
         // console.log(selectedMeal)
     }
 
@@ -92,7 +108,7 @@ export function AppProvider({ children }) {
         const updatedFavorites = [...favorites, meal]
         console.log(updatedFavorites)
         setFavorites(updatedFavorites)
-        // localStorage.setItem('favorites', updatedFavorites.join())
+        localStorage.setItem('favorites', JSON.stringify(updatedFavorites))
     }
 
     function removeFavorite(id) {
@@ -100,6 +116,7 @@ export function AppProvider({ children }) {
             return item.idMeal !== id 
         })
         setFavorites(filteredFav)
+        localStorage.setItem('favorites', JSON.stringify(filteredFav))
     }
 
     return (

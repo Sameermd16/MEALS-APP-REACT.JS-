@@ -16,7 +16,7 @@ export default function Favorites() {
                         <div key={id} className='d-flex flex-column align-items-center'>
                             <img className='border border-white border-2' src={image} alt={title} width="50px" style={{borderRadius: '50%'}} />
                             <p className='text-white text-center mb-0'> {title} </p>
-                            <button className='btn btn-sm text-white pointer' onClick={() => removeFavorite(id)}>remove</button>
+                            <button className='btn btn-sm text-white btn-outline-secondary' onClick={() => removeFavorite(id)}>remove</button>
                         </div>
                     )
                 })
